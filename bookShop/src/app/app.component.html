@@ -15,6 +15,6 @@
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
-
 <router-outlet></router-outlet>
 
+<app-book-component [book]='books' (changeTitle)='changeTitle($event)'></app-book-component>

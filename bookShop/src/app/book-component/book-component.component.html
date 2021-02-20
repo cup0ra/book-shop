@@ -1,0 +1,31 @@
+<section>
+  <div>
+    <mat-grid-list cols="2">
+      <mat-grid-tile class="container-book-img"><img class="book-img" mat-card-image src={{book.img}}></mat-grid-tile>
+      <mat-grid-tile>
+        <mat-card class="book-card">
+          <mat-card-header>
+            <mat-card-title>{{book.name}}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Genre: {{book.category}}</p>
+            <p>Publication date: {{book.createDate | date}}</p>
+            <p>Price: {{book.price | currency:'USD':'symbol-narrow'}}</p>
+            <p>{{book.description}}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" [disabled]='!book.isAvailable'
+              (click)="addBookCard()">Buy</button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+
+    </mat-grid-list>
+
+  </div>
+
+
+
+
+
+</section>
