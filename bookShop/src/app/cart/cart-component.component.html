@@ -1,0 +1,38 @@
+<div *ngIf='isCart; else elseBlock'>
+<div class="header">
+  <div class="sort">
+    <mat-form-field>
+      <mat-label>Sort</mat-label>
+      <select matNativeControl (change)="selectSort($event)">
+        <option *ngFor="let select of selects" [value]="select">{{select}}</option>
+      </select>
+    </mat-form-field>
+    <button mat-icon-button  (click)='sort()'>
+      <mat-icon [ngClass]='{rotate: !isSortField}'>filter_list</mat-icon>
+    </button>
+  </div>
+  <mat-card class="total">
+    <mat-card-content>
+      <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile>Quantity:</mat-grid-tile>
+        <mat-grid-tile>{{info.totalQuantity}}</mat-grid-tile>
+        <mat-grid-tile>Sum:</mat-grid-tile>
+        <mat-grid-tile>{{info.totalSum | currency:'USD':'symbol-narrow'}}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-card-actions>
+        <button mat-button  (click)='deleteAllBooks()'>REMOVE ALL</button>
+      </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
+</div>
+<div class="main">
+  <app-cart-list-component
+   [carts]='carts'
+   [sortField]='sortField'
+   [isSortField]='isSortField'
+   (deleteBook)='deleteBook($event)'></app-cart-list-component>
+</div>
+</div>
+<ng-template  #elseBlock><div class="empty"><h1>Not items...</h1></div></ng-template>
+
+

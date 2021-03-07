@@ -1,4 +1,5 @@
-export interface IBookModel {
+export interface IBook {
+  id: number;
   name: string;
   img: string;
   description: string;
@@ -12,4 +13,8 @@ export enum Category {
   Fantasy = 'Fantasy',
   Classics = 'Classics',
   Horror = 'Horror',
+  Training = 'Training',
+}
+export interface ICart extends IBook {
+  quantity: number;
 }

@@ -1,0 +1,26 @@
+<div class="wrapper">
+  <div class="sort">
+    <mat-form-field>
+      <mat-label>Sort</mat-label>
+      <select matNativeControl (change)="selectSort($event)">
+        <option *ngFor="let select of selects" [value]="select">{{select}}</option>
+      </select>
+    </mat-form-field>
+    <button mat-icon-button  (click)='sort()'>
+       <mat-icon [ngClass]='{rotate: !isSortField}'>filter_list</mat-icon>
+    </button>
+  </div>
+<div class="books-list">
+  <mat-card class="book"
+   *ngFor="let book of books | async | orderBy: sortField : isSortField"
+   [routerLink]="['/book', book.id]"
+   appHoverCard>
+    <mat-card-content class="book-content">
+      <img class="book-image" src={{book.img}} alt={{book.name}}>
+      <h5>{{book.name}}</h5>
+      <p class="price">{{book.price | currency:'USD':'symbol-narrow'}}</p>
+    </mat-card-content>
+</mat-card>
+</div>
+
+</div>

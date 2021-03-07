@@ -1,0 +1,24 @@
+.header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  .total {
+    width: 150px;
+    font-size: 16px;
+  }
+  .rotate {
+    transform: rotate(180deg);
+  }
+}
+.main {
+  padding: auto;
+}
+
+.empty {
+  width: 100%;
+  height: calc(100% - 64px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

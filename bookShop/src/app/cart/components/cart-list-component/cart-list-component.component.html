@@ -1,0 +1,2 @@
+<app-cart-item-component *ngFor='let cart of carts | orderBy: sortField : isSortField'
+ [cart]='cart' (deleteBook)='delBook($event)'></app-cart-item-component>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Category, IBookModel } from './book';
+import { ActivatedRoute } from '@angular/router';
+import { Category, IBook, ICart } from './models/book';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,12 @@ import { Category, IBookModel } from './book';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'bookShop';
+  title = 'Book';
 
-  books: IBookModel = {
+  cart: any = [];
+
+  books: IBook = {
+    id: 0,
     name: 'Switch: How to Change Things When Change Is Hard',
     img: 'https://images-na.ssl-images-amazon.com/images/I/41pfm3UZ7ZL._SX346_BO1,204,203,200_.jpg',
     description:
@@ -20,7 +24,16 @@ export class AppComponent {
     isAvailable: true,
   };
 
-  changeTitle(value: string): void {
-    this.title = value;
+  constructor(private route: ActivatedRoute) {}
+
+  addBookCart(value: IBook): void {
+    this.cart = this.cart.length
+      ? this.cart.reduce(
+          (a: ICart[], b: ICart) =>
+            b && b.id === value.id ? [...a, { ...b, quantity: b.quantity + 1 }] : [...a, b],
+          [],
+        )
+      : [...this.cart, { ...value, quantity: 1 }];
+    console.log(this.cart);
   }
 }

@@ -5,27 +5,20 @@
       <mat-grid-tile>
         <mat-card class="book-card">
           <mat-card-header>
-            <mat-card-title>{{book.name}}</mat-card-title>
+            <mat-card-title>{{book.name | uppercase }}</mat-card-title>
           </mat-card-header>
           <mat-card-content>
-            <p>Genre: {{book.category}}</p>
+            <p>Genre: {{book.category }}</p>
             <p>Publication date: {{book.createDate | date}}</p>
             <p>Price: {{book.price | currency:'USD':'symbol-narrow'}}</p>
             <p>{{book.description}}</p>
           </mat-card-content>
           <mat-card-actions>
             <button mat-raised-button color="primary" [disabled]='!book.isAvailable'
-              (click)="addBookCard()">Buy</button>
+              (click)="addBook()">Buy</button>
           </mat-card-actions>
         </mat-card>
       </mat-grid-tile>
-
     </mat-grid-list>
-
   </div>
-
-
-
-
-
 </section>
