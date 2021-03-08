@@ -31,6 +31,10 @@
    [sortField]='sortField'
    [isSortField]='isSortField'
    (deleteBook)='deleteBook($event)'></app-cart-list-component>
+   <button
+    [routerLink]="['/order']"
+    routerLinkActive="active"
+    mat-raised-button color="primary" >CHECKOUT</button>
 </div>
 </div>
 <ng-template  #elseBlock><div class="empty"><h1>Not items...</h1></div></ng-template>

@@ -1,0 +1,38 @@
+.card {
+  margin: 20px;
+}
+
+.wrapper-completed {
+  height: calc(100vh - 64px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .completed {
+    width: 400px;
+    margin: auto;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  .input {
+    width: 300px !important;
+  }
+}
+.address {
+  display: flex;
+  gap: 20px;
+}
+.payment {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  label {
+    margin-bottom: 20px;
+  }
+  .group {
+    display: flex;
+    gap: 20px;
+  }
+}

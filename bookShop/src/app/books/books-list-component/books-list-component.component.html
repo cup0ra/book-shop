@@ -14,6 +14,7 @@
   <mat-card class="book"
    *ngFor="let book of books | async | orderBy: sortField : isSortField"
    [routerLink]="['/book', book.id]"
+   routerLinkActive="active"
    appHoverCard>
     <mat-card-content class="book-content">
       <img class="book-image" src={{book.img}} alt={{book.name}}>

@@ -1,0 +1,60 @@
+<div *ngIf='isCompleted; else elseBlock'>
+<mat-card class="card">
+  <mat-card-actions>
+    <button
+    (click)='backClicked()'
+    routerLinkActive="active"
+    mat-button><mat-icon>arrow_back</mat-icon>GO BACK</button>
+  </mat-card-actions>
+  <mat-card-header>
+    <mat-card-title>ORDERING</mat-card-title>
+  </mat-card-header>
+  <form class="form" [formGroup]="options" (ngSubmit)="onSubmit()">
+    <mat-card-subtitle>Contact Information</mat-card-subtitle>
+    <mat-form-field class="input" appearance="outline" >
+      <mat-label>Name</mat-label>
+      <input class="input" matInput type="text" placeholder="Enter name" formControlName="name" required>
+    </mat-form-field>
+    <mat-form-field class="input" appearance="outline" >
+      <mat-label>Phone</mat-label>
+      <input  type="tel" matInput placeholder="Enter phone" formControlName="phone" required>
+    </mat-form-field>
+    <mat-card-subtitle>Address</mat-card-subtitle>
+    <div class="address">
+      <mat-form-field class="input" appearance="outline" >
+        <mat-label>Street</mat-label>
+        <input  matInput type="text" placeholder="Enter street" formControlName="street" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline" >
+        <mat-label>Home</mat-label>
+        <input matInput placeholder="Enter home" formControlName="home" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline" >
+        <mat-label>Flat</mat-label>
+        <input matInput placeholder="Enter flat" formControlName="flat" required>
+      </mat-form-field>
+    </div>
+    <div class="payment">
+      <mat-card-subtitle>Payment method:</mat-card-subtitle>
+      <mat-radio-group class="group" formControlName="payment">
+        <mat-radio-button [checked]='true' value="card">Card</mat-radio-button>
+        <mat-radio-button value="cash">Cash</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <mat-card-subtitle>Comment</mat-card-subtitle>
+    <mat-form-field class="input" appearance="outline">
+      <mat-label>Comments to the order</mat-label>
+      <textarea  matInput formControlName="comment"></textarea>
+    </mat-form-field>
+    <button mat-raised-button color="primary" [disabled]='!options.valid' type="submit">checkout</button>
+  </form>
+</mat-card>
+</div>
+<ng-template #elseBlock>
+  <div class="wrapper-completed">
+  <mat-card class="completed">
+    <mat-card-subtitle>The product has been ordered, you will be contacted shortly</mat-card-subtitle>
+  </mat-card>
+  </div>
+</ng-template>
+
