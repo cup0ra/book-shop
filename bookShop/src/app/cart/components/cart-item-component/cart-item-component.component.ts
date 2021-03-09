@@ -8,9 +8,11 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { BooksService } from 'src/app/services/books.service';
-import { CartService } from 'src/app/services/cart.service';
-import { ICart } from '../../../models/book';
+
+import { BooksService } from 'src/app/books/services/books.service';
+import { CartService } from 'src/app/cart/services/cart.service';
+
+import ICart from '../../models/cart';
 
 @Component({
   selector: 'app-cart-item-component',

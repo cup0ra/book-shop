@@ -6,9 +6,9 @@ import { RouterModule } from '@angular/router';
 import { OrderByPipe } from './pipes/order-by.pipe';
 import { HoverCardDirective } from './directives/hover-card.directive';
 import { ClickElementChangeFontDirective } from './directives/click-element-change-font.directive';
-
+import { DialogComponent } from './components/dialog/dialog.component';
 @NgModule({
-  declarations: [OrderByPipe, HoverCardDirective, ClickElementChangeFontDirective],
+  declarations: [OrderByPipe, HoverCardDirective, ClickElementChangeFontDirective, DialogComponent],
   imports: [CommonModule, MaterialModule],
   exports: [
     CommonModule,

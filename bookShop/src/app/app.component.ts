@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Category, IBook, ICart } from './models/book';
+import { Category, IBook } from './books/models/book';
+import ICart from './cart/models/cart';
 
 @Component({
   selector: 'app-root',

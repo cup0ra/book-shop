@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { CartService } from 'src/app/services/cart.service';
+import { CartService } from 'src/app/cart/services/cart.service';
 
 @Component({
   selector: 'app-order-form',

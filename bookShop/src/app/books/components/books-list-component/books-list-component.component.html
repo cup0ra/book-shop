@@ -9,18 +9,27 @@
     <button mat-icon-button  (click)='sort()'>
        <mat-icon [ngClass]='{rotate: !isSortField}'>filter_list</mat-icon>
     </button>
+    <button class="edit" mat-button *ngIf='isAdmin' [routerLink]="['../product/add']">
+      <mat-icon >add</mat-icon>
+      <span>BOOK</span>
+     </button>
   </div>
 <div class="books-list">
   <mat-card class="book"
    *ngFor="let book of books | async | orderBy: sortField : isSortField"
-   [routerLink]="['/book', book.id]"
    routerLinkActive="active"
    appHoverCard>
-    <mat-card-content class="book-content">
+    <mat-card-content [style.height]='style' class="book-content" [routerLink]="['/book', book.id]">
       <img class="book-image" src={{book.img}} alt={{book.name}}>
       <h5>{{book.name}}</h5>
       <p class="price">{{book.price | currency:'USD':'symbol-narrow'}}</p>
     </mat-card-content>
+    <mat-card-actions *ngIf='isAdmin'>
+      <button class="edit" mat-icon-button class="shopping_cart-icon" [routerLink]="['../product/edit', book.id]">
+        <mat-icon >edit</mat-icon>
+       </button>
+    </mat-card-actions>
+
 </mat-card>
 </div>
 

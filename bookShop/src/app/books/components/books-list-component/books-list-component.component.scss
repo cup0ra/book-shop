@@ -19,12 +19,15 @@
     width: 150px;
     font-size: 10px;
     transition: 0.3s;
-
     .book-content {
-      height: 100%;
+      height: 87%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      margin-bottom: 0;
+      &:hover {
+        cursor: pointer;
+      }
     }
     .book-image {
       width: 150px;
@@ -32,9 +35,6 @@
     }
     .price {
       text-align: end;
-    }
-    &:hover {
-      cursor: pointer;
     }
   }
 }

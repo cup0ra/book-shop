@@ -8,7 +8,7 @@ import {
 
 import { ActivatedRoute } from '@angular/router';
 import { BooksService } from '../../services/books.service';
-import { CartService } from '../../services/cart.service';
+import { CartService } from '../../../cart/services/cart.service';
 
 @Component({
   selector: 'app-book-component',

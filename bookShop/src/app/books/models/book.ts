@@ -15,6 +15,3 @@ export enum Category {
   Horror = 'Horror',
   Training = 'Training',
 }
-export interface ICart extends IBook {
-  quantity: number;
-}

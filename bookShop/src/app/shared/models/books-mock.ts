@@ -1,4 +1,4 @@
-import { Category, IBook } from './book';
+import { Category, IBook } from '../../books/models/book';
 
 export const booksArray: IBook[] = [
   {
@@ -9,7 +9,7 @@ export const booksArray: IBook[] = [
       'This Fifth Edition is completely revised and expanded to cover JavaScript as it is used in todays Web 2.0 applications. This book is both an example-driven programmers guide and a keep-on-your-desk reference, with new chapters that explain everything you need to know to get the most out of JavaScript, including: Scripted HTTP and Ajax XML processing Client-side graphics using the canvas tag Namespaces in JavaScript--essential when writing complex programs Classes, closures, persistence, Flash, and JavaScript embedded in Java applications Part I explains the core JavaScript language in detail. If you are new to JavaScript, it will teach you the language. If you are already a JavaScript programmer, Part I will sharpen your skills and deepen your understanding of the language.',
     price: 5.45,
     category: Category.Training,
-    createDate: Date.now(),
+    createDate: 1614546000000,
     isAvailable: true,
   },
   {

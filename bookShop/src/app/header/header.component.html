@@ -1,6 +1,7 @@
 <mat-toolbar color="primary">
   <a mat-button  [routerLink]="['booksList']" routerLinkActive="active">BOOKS</a>
-  <a mat-button  [routerLink]="['order']" routerLinkActive="active">ORDERS</a>
+  <a mat-button  [routerLink]="['/admin/orders']" routerLinkActive="active">ORDERS</a>
+  <a mat-button  [routerLink]="['admin']" routerLinkActive="active">ADMIN</a>
   <span class="example-spacer"><span>Books shop</span></span>
   <button mat-icon-button matBadge={{badge}}
    [matBadgeHidden]="false"
@@ -9,5 +10,9 @@
    [routerLink]="['cart']"
    routerLinkActive="active">
     <mat-icon>shopping_cart</mat-icon>
+  </button>
+  <button mat-icon-button class="shopping_cart-icon" (click)='onLogin()'>
+   <mat-icon *ngIf='isAdmin'>exit_to_app</mat-icon>
+   <mat-icon *ngIf='!isAdmin'>login</mat-icon>
   </button>
 </mat-toolbar>
