@@ -3,10 +3,8 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnChanges,
   OnInit,
   Output,
-  SimpleChanges,
 } from '@angular/core';
 
 import { BooksService } from 'src/app/books/services/books.service';
@@ -20,7 +18,7 @@ import ICart from '../../models/cart';
   styleUrls: ['./cart-item-component.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CartItemComponentComponent implements OnInit, OnChanges {
+export class CartItemComponentComponent implements OnInit {
   @Input() cart!: ICart;
 
   @Output() deleteBook = new EventEmitter<number>();
@@ -31,10 +29,6 @@ export class CartItemComponentComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.price = this.cart.price * this.cart.quantity;
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(`OnChanges`, changes.cart);
   }
 
   getInputValue(event: any) {

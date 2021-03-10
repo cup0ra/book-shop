@@ -1,4 +1,4 @@
-import { IBook } from '../../books/models/book';
+import ICart from 'src/app/cart/models/cart';
 
 export interface IOrder {
   name: string;
@@ -8,5 +8,5 @@ export interface IOrder {
   phone: number;
   comment: string;
   payment: string;
-  product: IBook[];
+  product: ICart[];
 }

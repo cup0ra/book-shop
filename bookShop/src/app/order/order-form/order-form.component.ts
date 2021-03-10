@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+
 import { CartService } from 'src/app/cart/services/cart.service';
+import { OrdersService } from '../services/orders.service';
 
 @Component({
   selector: 'app-order-form',
@@ -15,7 +17,12 @@ export class OrderFormComponent implements OnInit {
 
   isCompleted = true;
 
-  constructor(fb: FormBuilder, private cartService: CartService, private location: Location) {
+  constructor(
+    fb: FormBuilder,
+    private cartService: CartService,
+    private location: Location,
+    private orderServices: OrdersService,
+  ) {
     this.options = fb.group({
       name: new FormControl(''),
       street: new FormControl(''),
@@ -34,6 +41,8 @@ export class OrderFormComponent implements OnInit {
   onSubmit() {
     this.order = { ...this.order, ...this.options.value, product: this.cartService.cart };
     console.log(this.order);
+    this.orderServices.addOrder(this.order);
+    console.log(this.orderServices.getOrders());
     this.cartService.removeAllBooks();
     this.isCompleted = false;
   }

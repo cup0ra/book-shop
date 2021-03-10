@@ -35,7 +35,6 @@ export class BooksListComponentComponent implements OnInit {
     this.books = this.booksService.getBooks();
     this.isAdmin = this.authService.getloggedIn();
     this.style = this.isAdmin ? '87%' : '100%';
-    console.log(this.route.data);
   }
 
   sort() {

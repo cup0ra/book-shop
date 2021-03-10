@@ -6,11 +6,17 @@ import { IOrder } from '../models/order';
   providedIn: 'root',
 })
 export class OrdersService {
-  orders: IOrder[] = [];
+  private orders: IOrder[] = [];
 
   ordersSubject: BehaviorSubject<IOrder[]>;
 
   constructor() {
     this.ordersSubject = new BehaviorSubject(this.orders);
   }
+
+  getOrders = () => this.ordersSubject.getValue();
+
+  addOrder = (obj: IOrder): void => {
+    this.ordersSubject.next([...this.ordersSubject.getValue(), obj]);
+  };
 }

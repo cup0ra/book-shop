@@ -9,8 +9,7 @@ export class LocalStorageService {
   }
 
   getItem<T>(key: string): T {
-    const storedValue = this.localStorage.getItem(key);
-    return JSON.parse(storedValue);
+    return JSON.parse(this.localStorage.getItem(key));
   }
 
   removeItem(key: string) {
