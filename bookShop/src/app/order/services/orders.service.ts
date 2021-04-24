@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { HttpClientService } from 'src/app/shared/services/http-client.service';
 import { IOrder } from '../models/order';
 
 @Injectable({
@@ -8,15 +10,21 @@ import { IOrder } from '../models/order';
 export class OrdersService {
   private orders: IOrder[] = [];
 
-  ordersSubject: BehaviorSubject<IOrder[]>;
+  constructor(private httpService: HttpClientService<IOrder>) {}
 
-  constructor() {
-    this.ordersSubject = new BehaviorSubject(this.orders);
+  getOrders() {
+    return this.httpService.get('orders').pipe(
+      tap((data) => {
+        this.orders = data;
+      }),
+    );
   }
 
-  getOrders = () => this.ordersSubject.getValue();
-
-  addOrder = (obj: IOrder): void => {
-    this.ordersSubject.next([...this.ordersSubject.getValue(), obj]);
+  addOrder = (obj: IOrder): Observable<IOrder> => {
+    return this.httpService.post('orders', obj).pipe(
+      tap((data) => {
+        this.orders = [...this.orders, data];
+      }),
+    );
   };
 }

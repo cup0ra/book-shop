@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { BooksService } from '../books/services/books.service';
 import { CartService } from './services/cart.service';
 
 import ICart from './models/cart';
@@ -13,7 +12,7 @@ import ICart from './models/cart';
 export class CartComponentComponent implements OnInit {
   carts: ICart[] = [];
 
-  info: any = this.cartService.info;
+  info: any = this.cartService.getCartInfo();
 
   isCart = false;
 
@@ -23,7 +22,7 @@ export class CartComponentComponent implements OnInit {
 
   selects = ['price', 'name', 'quantity'];
 
-  constructor(private cartService: CartService, private booksService: BooksService) {}
+  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
     this.updateCart();
@@ -33,7 +32,7 @@ export class CartComponentComponent implements OnInit {
     console.log('destroy');
   }
 
-  deleteBook = (id: number): void => {
+  deleteBook = (id: string): void => {
     this.cartService.deleteBook(id);
     this.updateCart();
   };
@@ -44,8 +43,10 @@ export class CartComponentComponent implements OnInit {
   };
 
   updateCart() {
-    this.carts = this.cartService.getCart();
-    this.isCart = this.carts.length > 0;
+    this.cartService.getCart().subscribe((data) => {
+      this.carts = data;
+      this.isCart = this.carts.length > 0;
+    });
   }
 
   sort() {

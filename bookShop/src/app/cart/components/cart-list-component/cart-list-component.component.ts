@@ -16,7 +16,7 @@ import {
 export class CartListComponentComponent implements OnInit {
   @Input() carts: any;
 
-  @Output() deleteBook = new EventEmitter<number>();
+  @Output() deleteBook = new EventEmitter<string>();
 
   @Input() sortField: any;
 
@@ -26,7 +26,7 @@ export class CartListComponentComponent implements OnInit {
     console.log(this.carts);
   }
 
-  delBook = (id: number) => {
+  delBook = (id: string) => {
     this.deleteBook.emit(id);
   };
 }

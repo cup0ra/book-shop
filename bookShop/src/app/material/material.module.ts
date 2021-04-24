@@ -17,6 +17,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   exports: [
@@ -37,6 +38,7 @@ import { MatTableModule } from '@angular/material/table';
     MatMomentDateModule,
     MatListModule,
     MatTableModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class MaterialModule {}

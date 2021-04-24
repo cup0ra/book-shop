@@ -21,7 +21,7 @@ import ICart from '../../models/cart';
 export class CartItemComponentComponent implements OnInit {
   @Input() cart!: ICart;
 
-  @Output() deleteBook = new EventEmitter<number>();
+  @Output() deleteBook = new EventEmitter<string>();
 
   price: any;
 
@@ -33,7 +33,7 @@ export class CartItemComponentComponent implements OnInit {
 
   getInputValue(event: any) {
     this.price = this.cart.price * event.target.value;
-    this.cartService.changeQuantityBooks(this.cart.id, event.target.value);
+    this.cartService.changeQuantityBooks({ ...this.cart, quantity: +event.target.value });
   }
 
   removeBook() {

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { IOrder } from 'src/app/order/models/order';
 import { OrdersService } from 'src/app/order/services/orders.service';
 
 @Component({
@@ -8,14 +7,16 @@ import { OrdersService } from 'src/app/order/services/orders.service';
   styleUrls: ['./orders.component.scss'],
 })
 export class OrdersComponent implements OnInit {
-  orders: IOrder[];
+  orders: any;
 
   displayedColumns: string[] = ['id', 'name', 'price', 'quaintly'];
 
   dataSource: any;
 
-  constructor(private orderServer: OrdersService) {
-    this.orders = this.orderServer.getOrders();
+  constructor(private orderService: OrdersService) {
+    this.orderService.getOrders().subscribe((data) => {
+      this.orders = data;
+    });
   }
 
   ngOnInit(): void {

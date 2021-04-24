@@ -5,8 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 
 import { Category, IBook } from 'src/app/books/models/book';
-import { BooksService } from 'src/app/books/services/books.service';
-
+import { GeneratorService } from 'src/app/core/service/generator';
+import { HttpClientService } from 'src/app/shared/services/http-client.service';
 @Component({
   selector: 'app-add-books',
   templateUrl: './add-books.component.html',
@@ -21,33 +21,41 @@ export class AddBooksComponent implements OnInit {
 
   book?: IBook;
 
-  buttonName?: string;
+  buttonName? = 'ADD BOOK';
 
   constructor(
-    fb: FormBuilder,
+    private fb: FormBuilder,
     private location: Location,
-    private booksService: BooksService,
+    private booksService: HttpClientService<IBook>,
     private router: Router,
     private route: ActivatedRoute,
+    private generatorId: GeneratorService,
   ) {
     const id = this.route.snapshot.paramMap.get('id');
-    if (id) this.book = this.booksService.getBook(id);
+    if (id)
+      this.booksService.getId('books', id).subscribe((book: any) => {
+        this.book = book;
+        this.options.patchValue({
+          ...book,
+          createDate: moment(book.createDate).format(),
+          isAvailable: book.isAvailable.toString(),
+        });
+        this.buttonName = 'CHANGE BOOK';
+      });
 
     this.options = fb.group({
-      name: new FormControl(this.book?.name || ''),
-      img: new FormControl(this.book?.img || ''),
-      price: new FormControl(this.book?.price || ''),
-      createDate: new FormControl(moment(this.book?.createDate).format() || moment()),
-      isAvailable: new FormControl(this.book?.isAvailable || 'true'),
-      description: new FormControl(this.book?.description || ''),
-      category: new FormControl(this.book?.category || Category.Classics),
+      name: new FormControl(''),
+      img: new FormControl(''),
+      price: new FormControl(''),
+      createDate: new FormControl(moment()),
+      isAvailable: new FormControl('true'),
+      description: new FormControl(''),
+      category: new FormControl(Category.Classics),
     });
-
-    this.buttonName = this.book ? 'CHANGE BOOK' : 'ADD BOOK';
   }
 
   ngOnInit(): void {
-    console.log('');
+    console.log(this.book);
   }
 
   onSubmit() {
@@ -55,16 +63,18 @@ export class AddBooksComponent implements OnInit {
       ...this.order,
       ...this.options.value,
       isAvailable: !this.options.controls.isAvailable.touched,
-      id: this.book ? this.book.id : this.booksService.getBooks().value.length + 1,
+      id: this.book ? this.book.id : this.generatorId.getRandomId(),
       createDate: moment(this.options.controls.createDate.value).valueOf(),
     };
     if (this.book) {
-      this.booksService.changeBook(this.order);
+      this.booksService
+        .put('books', this.order.id, this.order)
+        .subscribe(() => this.router.navigate(['admin/products']));
     } else {
-      this.booksService.addBook(this.order);
+      this.booksService
+        .post('books', this.order)
+        .subscribe(() => this.router.navigate(['admin/products']));
     }
-    console.log(this.order);
-    this.router.navigate(['admin/products']);
   }
 
   backClicked() {

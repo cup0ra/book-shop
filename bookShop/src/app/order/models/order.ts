@@ -9,4 +9,5 @@ export interface IOrder {
   comment: string;
   payment: string;
   product: ICart[];
+  id: string;
 }

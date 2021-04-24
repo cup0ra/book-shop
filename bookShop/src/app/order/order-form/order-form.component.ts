@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 import { CartService } from 'src/app/cart/services/cart.service';
+import { GeneratorService } from 'src/app/core/service/generator';
 import { OrdersService } from '../services/orders.service';
 
 @Component({
@@ -15,6 +16,8 @@ export class OrderFormComponent implements OnInit {
 
   order: any = {};
 
+  cartItems: any;
+
   isCompleted = true;
 
   constructor(
@@ -22,6 +25,7 @@ export class OrderFormComponent implements OnInit {
     private cartService: CartService,
     private location: Location,
     private orderServices: OrdersService,
+    private generator: GeneratorService,
   ) {
     this.options = fb.group({
       name: new FormControl(''),
@@ -35,16 +39,25 @@ export class OrderFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.cartService.getCart().subscribe((cart) => {
+      this.cartItems = cart;
+    });
     console.log(this.options.valid);
   }
 
   onSubmit() {
-    this.order = { ...this.order, ...this.options.value, product: this.cartService.cart };
-    console.log(this.order);
-    this.orderServices.addOrder(this.order);
+    this.orderServices
+      .addOrder({
+        ...this.order,
+        ...this.options.value,
+        product: this.cartItems,
+        id: this.generator.getRandomId(),
+      })
+      .subscribe(() => {
+        this.cartService.removeAllBooks();
+        this.isCompleted = false;
+      });
     console.log(this.orderServices.getOrders());
-    this.cartService.removeAllBooks();
-    this.isCompleted = false;
   }
 
   backClicked() {

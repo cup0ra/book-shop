@@ -22,7 +22,7 @@ export class HeaderComponent implements DoCheck {
   ) {}
 
   ngDoCheck() {
-    this.badge = this.cartService.info.totalQuantity;
+    this.badge = this.cartService.getCartInfo().totalQuantity;
   }
 
   onLogin() {

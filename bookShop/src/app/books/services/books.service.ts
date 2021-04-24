@@ -1,30 +1,45 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { HttpClientService } from 'src/app/shared/services/http-client.service';
 import { IBook } from '../models/book';
-import { booksArray } from '../../shared/models/books-mock';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BooksService {
-  books: BehaviorSubject<IBook[]>;
+  private booksSource = new BehaviorSubject<any>([]);
 
-  constructor() {
-    this.books = new BehaviorSubject(booksArray);
+  public books = this.booksSource.asObservable();
+
+  constructor(private booksHttp: HttpClientService<IBook[] | IBook>) {
+    this.booksHttp.get('books').subscribe((books) => {
+      this.booksSource.next(books);
+    });
   }
 
-  getBooks = () => this.books;
+  getBooks = () => this.booksSource;
 
-  getBook = (id: string): any => {
-    return this.books.getValue().find((e: IBook) => e.id === +id);
-  };
+  getBook(id: string): Observable<any> {
+    return this.booksHttp.getId('books', id);
+  }
 
   addBook(obj: IBook) {
-    this.books.next([...this.books.getValue(), obj]);
-    console.log(this.books.getValue());
+    return this.booksHttp.post('books', obj).pipe(
+      tap((data) => {
+        this.booksSource.next([...this.booksSource.getValue(), data]);
+      }),
+    );
   }
 
   changeBook(obj: IBook) {
-    this.books.next([...this.books.getValue().filter((e: IBook) => e.id !== obj.id), obj]);
+    return this.booksHttp.put('books', obj.id, obj).pipe(
+      tap((data: any) => {
+        this.booksSource.next([
+          ...this.booksSource.getValue().filter((e: IBook) => e.id !== data.id),
+          data,
+        ]);
+      }),
+    );
   }
 }

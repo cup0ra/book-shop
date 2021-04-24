@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper" *ngIf="loadingService.isLoading$ | async; else elseBlock">
   <div class="sort">
     <mat-form-field>
       <mat-label>Sort</mat-label>
@@ -16,10 +16,10 @@
   </div>
 <div class="books-list">
   <mat-card class="book"
-   *ngFor="let book of books | async | orderBy: sortField : isSortField"
+   *ngFor="let book of books | orderBy: sortField : isSortField"
    routerLinkActive="active"
    appHoverCard>
-    <mat-card-content [style.height]='style' class="book-content" [routerLink]="['/book', book.id]">
+    <mat-card-content [style.height]='style' class="book-content" [routerLink]="['./book', book.id]">
       <img class="book-image" src={{book.img}} alt={{book.name}}>
       <h5>{{book.name}}</h5>
       <p class="price">{{book.price | currency:'USD':'symbol-narrow'}}</p>
@@ -32,5 +32,5 @@
 
 </mat-card>
 </div>
-
 </div>
+<ng-template #elseBlock><app-spinner></app-spinner></ng-template>

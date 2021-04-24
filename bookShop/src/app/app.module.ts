@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 
@@ -13,11 +15,13 @@ import { AdminModule } from './admin/admin.module';
 
 import { AuthGuardService } from './admin/guards/admin.guard';
 import { AuthService } from './shared/services/auth.services';
+import { LoadingInterceptorInterceptor } from './shared/intercepter/loading-interceptor.interceptor';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     BooksModule,
     CartModule,
@@ -26,7 +30,11 @@ import { AuthService } from './shared/services/auth.services';
     SharedModule,
     AppRoutingModule,
   ],
-  providers: [AuthGuardService, AuthService],
+  providers: [
+    AuthGuardService,
+    AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

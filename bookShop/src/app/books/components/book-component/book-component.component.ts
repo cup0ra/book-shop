@@ -7,8 +7,10 @@ import {
 } from '@angular/material/snack-bar';
 
 import { ActivatedRoute } from '@angular/router';
+import { LoadingServiceService } from 'src/app/shared/services/loading-service.service';
 import { BooksService } from '../../services/books.service';
 import { CartService } from '../../../cart/services/cart.service';
+import { IBook } from '../../models/book';
 
 @Component({
   selector: 'app-book-component',
@@ -37,16 +39,20 @@ export class BookComponentComponent implements OnInit {
     private route: ActivatedRoute,
     private cartService: CartService,
     private booksService: BooksService,
+    public loadingService: LoadingServiceService,
   ) {}
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    if (id) this.book = this.booksService.getBook(id);
+    if (id) {
+      this.booksService.getBook(id).subscribe((data: IBook) => {
+        this.book = data;
+      });
+    }
   }
 
   addBook(): void {
-    if (this.book) this.cartService.addBookCart(this.book);
-    this.open();
+    if (this.book) this.cartService.addBookCart(this.book).subscribe(() => this.open());
   }
 
   open() {
