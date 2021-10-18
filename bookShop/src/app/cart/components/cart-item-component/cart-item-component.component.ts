@@ -7,7 +7,6 @@ import {
   Output,
 } from '@angular/core';
 
-import { BooksService } from 'src/app/books/services/books.service';
 import { CartService } from 'src/app/cart/services/cart.service';
 
 import ICart from '../../models/cart';
@@ -25,7 +24,7 @@ export class CartItemComponentComponent implements OnInit {
 
   price: any;
 
-  constructor(private cartService: CartService, private booksService: BooksService) {}
+  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
     this.price = this.cart.price * this.cart.quantity;

@@ -1,0 +1,30 @@
+:host {
+  height: calc(100vh - 64px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  width: 375px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  border: 1px solid blueviolet;
+  position: relative;
+
+  .title {
+    position: absolute;
+    margin: 0;
+    padding: 0 10px;
+    color: blueviolet;
+    top: -13px;
+    background-color: #fafafa;
+  }
+
+  .registration {
+    margin-top: 20px;
+    align-self: flex-end;
+  }
+}

@@ -12,7 +12,7 @@ import { OrdersService } from '../services/orders.service';
   styleUrls: ['./order-form.component.scss'],
 })
 export class OrderFormComponent implements OnInit {
-  options: FormGroup;
+  options!: FormGroup;
 
   order: any = {};
 
@@ -21,13 +21,15 @@ export class OrderFormComponent implements OnInit {
   isCompleted = true;
 
   constructor(
-    fb: FormBuilder,
+    private fb: FormBuilder,
     private cartService: CartService,
     private location: Location,
     private orderServices: OrdersService,
     private generator: GeneratorService,
-  ) {
-    this.options = fb.group({
+  ) {}
+
+  ngOnInit(): void {
+    this.options = this.fb.group({
       name: new FormControl(''),
       street: new FormControl(''),
       home: new FormControl(''),
@@ -36,9 +38,6 @@ export class OrderFormComponent implements OnInit {
       comment: new FormControl(''),
       payment: new FormControl(''),
     });
-  }
-
-  ngOnInit(): void {
     this.cartService.getCart().subscribe((cart) => {
       this.cartItems = cart;
     });

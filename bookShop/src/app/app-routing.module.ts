@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 import { AuthGuardService } from './admin/guards/admin.guard';
+import { LoginComponent } from './auth/login/login.component';
 import { BooksComponent } from './books/books.component';
 
 import { CartComponentComponent } from './cart/cart-component.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'order', component: OrderComponent },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuardService] },
   { path: 'books-list', component: BooksComponent },
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({

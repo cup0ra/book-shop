@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { IBook } from 'src/app/books/models/book';
-import { HttpClientService } from 'src/app/shared/services/http-client.service';
+import { HttpClientService } from 'src/app/shared/services/http-client/http-client.service';
 
 import ICart from '../models/cart';
 
@@ -17,15 +17,14 @@ export class CartService {
     totalSum: 0,
   };
 
-  constructor(private http: HttpClientService<ICart>) {
-    this.http.get('cart').subscribe((data) => {
-      this.cart = data;
-      this.updateCartData();
-    });
-  }
+  constructor(private http: HttpClientService<ICart>) {}
 
   getCart(): Observable<ICart[]> {
-    return this.http.get('cart');
+    return this.http.get('cart').pipe(
+      tap((data) => {
+        this.cart = data;
+      }),
+    );
   }
 
   getCartInfo() {
@@ -65,8 +64,8 @@ export class CartService {
   }
 
   deleteBook(id: string) {
-    this.http.delete('cart', id).subscribe(() => {
-      this.cart = this.cart.filter((e: ICart) => e.id !== id);
+    this.http.delete('cart', id).subscribe(async (data) => {
+      this.cart = data;
       this.updateCartData();
     });
   }

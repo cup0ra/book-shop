@@ -1,24 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { DialogSettingsComponent } from './dialogSettings.component';
 
 describe('DialogComponent', () => {
   let component: DialogSettingsComponent;
-  let fixture: ComponentFixture<DialogSettingsComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [DialogSettingsComponent],
-    }).compileComponents();
-  });
+  let dataMock: any;
+  let formBuilderMock: any;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DialogSettingsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = new DialogSettingsComponent(dataMock, formBuilderMock);
   });
 
-  it('should create', () => {
+  it('should create DialogSettingsComponent', () => {
     expect(component).toBeTruthy();
   });
 });

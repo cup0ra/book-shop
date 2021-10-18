@@ -13,13 +13,11 @@ export class OrdersComponent implements OnInit {
 
   dataSource: any;
 
-  constructor(private orderService: OrdersService) {
+  constructor(private orderService: OrdersService) {}
+
+  ngOnInit(): void {
     this.orderService.getOrders().subscribe((data) => {
       this.orders = data;
     });
-  }
-
-  ngOnInit(): void {
-    console.log(this.orders);
   }
 }

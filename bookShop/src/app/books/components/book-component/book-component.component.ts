@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  MatSnackBar,
-  MatSnackBarConfig,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-} from '@angular/material/snack-bar';
-
 import { ActivatedRoute } from '@angular/router';
-import { LoadingServiceService } from 'src/app/shared/services/loading-service.service';
+
+import { LoadingServiceService } from 'src/app/shared/services/loading/loading-service.service';
+import { SnackBarService } from 'src/app/shared/services/snack-bar/snack-bar.service';
 import { BooksService } from '../../services/books.service';
 import { CartService } from '../../../cart/services/cart.service';
+
 import { IBook } from '../../models/book';
 
 @Component({
@@ -18,24 +14,12 @@ import { IBook } from '../../models/book';
   styleUrls: ['./book-component.component.scss'],
 })
 export class BookComponentComponent implements OnInit {
-  book: any;
+  public book!: IBook;
 
-  message = `Book added in cart`;
-
-  actionButtonLabel = 'Retry';
-
-  action = false;
-
-  autoHide = 2000;
-
-  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
-
-  verticalPosition: MatSnackBarVerticalPosition = 'top';
-
-  addExtraClass = false;
+  public message = `Book added in cart`;
 
   constructor(
-    public snackBar: MatSnackBar,
+    public snackBar: SnackBarService,
     private route: ActivatedRoute,
     private cartService: CartService,
     private booksService: BooksService,
@@ -52,14 +36,6 @@ export class BookComponentComponent implements OnInit {
   }
 
   addBook(): void {
-    if (this.book) this.cartService.addBookCart(this.book).subscribe(() => this.open());
-  }
-
-  open() {
-    const config = new MatSnackBarConfig();
-    config.verticalPosition = this.verticalPosition;
-    config.horizontalPosition = this.horizontalPosition;
-    config.duration = this.autoHide;
-    this.snackBar.open(this.message, this.action ? this.actionButtonLabel : undefined, config);
+    this.cartService.addBookCart(this.book).subscribe(() => this.snackBar.open(this.message));
   }
 }

@@ -20,7 +20,7 @@
     <mat-form-field appearance="outline">
       <mat-label>Category</mat-label>
       <mat-select formControlName="category">
-        <mat-option *ngFor="let category of categorys | keyvalue" [value]="category.value">{{category.value}}</mat-option>
+        <mat-option *ngFor="let category of categories | keyvalue" [value]="category.value">{{category.value}}</mat-option>
       </mat-select>
     </mat-form-field>
       <mat-form-field class="input" appearance="outline" >

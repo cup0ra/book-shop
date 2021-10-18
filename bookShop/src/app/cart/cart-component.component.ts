@@ -12,7 +12,7 @@ import ICart from './models/cart';
 export class CartComponentComponent implements OnInit {
   carts: ICart[] = [];
 
-  info: any = this.cartService.getCartInfo();
+  info: any;
 
   isCart = false;
 
@@ -25,6 +25,7 @@ export class CartComponentComponent implements OnInit {
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
+    this.info = this.cartService.getCartInfo();
     this.updateCart();
   }
 

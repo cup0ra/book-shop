@@ -5,19 +5,19 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 
 import { Category, IBook } from 'src/app/books/models/book';
-import { GeneratorService } from 'src/app/core/service/generator';
-import { HttpClientService } from 'src/app/shared/services/http-client.service';
+import { HttpClientService } from 'src/app/shared/services/http-client/http-client.service';
+
 @Component({
   selector: 'app-add-books',
   templateUrl: './add-books.component.html',
   styleUrls: ['./add-books.component.scss'],
 })
 export class AddBooksComponent implements OnInit {
-  options: FormGroup;
+  options!: FormGroup;
 
   order: any = {};
 
-  categorys = Category;
+  categories = Category;
 
   book?: IBook;
 
@@ -29,8 +29,9 @@ export class AddBooksComponent implements OnInit {
     private booksService: HttpClientService<IBook>,
     private router: Router,
     private route: ActivatedRoute,
-    private generatorId: GeneratorService,
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id)
       this.booksService.getId('books', id).subscribe((book: any) => {
@@ -43,7 +44,7 @@ export class AddBooksComponent implements OnInit {
         this.buttonName = 'CHANGE BOOK';
       });
 
-    this.options = fb.group({
+    this.options = this.fb.group({
       name: new FormControl(''),
       img: new FormControl(''),
       price: new FormControl(''),
@@ -54,21 +55,18 @@ export class AddBooksComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    console.log(this.book);
-  }
-
   onSubmit() {
     this.order = {
       ...this.order,
       ...this.options.value,
       isAvailable: !this.options.controls.isAvailable.touched,
-      id: this.book ? this.book.id : this.generatorId.getRandomId(),
-      createDate: moment(this.options.controls.createDate.value).valueOf(),
+      createDate: Number(moment(this.options.controls.createDate.value).valueOf()),
+      id: this.book?.id,
     };
+    console.log(this.order);
     if (this.book) {
       this.booksService
-        .put('books', this.order.id, this.order)
+        .put('books', this.book.id, this.order)
         .subscribe(() => this.router.navigate(['admin/products']));
     } else {
       this.booksService

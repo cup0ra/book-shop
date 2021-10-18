@@ -14,8 +14,10 @@ import { OrderModule } from './order/order.module';
 import { AdminModule } from './admin/admin.module';
 
 import { AuthGuardService } from './admin/guards/admin.guard';
-import { AuthService } from './shared/services/auth.services';
+
 import { LoadingInterceptorInterceptor } from './shared/intercepter/loading-interceptor.interceptor';
+import { AuthService } from './shared/services/auth/auth.services';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
@@ -27,6 +29,7 @@ import { LoadingInterceptorInterceptor } from './shared/intercepter/loading-inte
     CartModule,
     AdminModule,
     OrderModule,
+    AuthModule,
     SharedModule,
     AppRoutingModule,
   ],

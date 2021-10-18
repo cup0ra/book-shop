@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { LoadingServiceService } from './shared/services/loading-service.service';
+import { LoadingServiceService } from './shared/services/loading/loading-service.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

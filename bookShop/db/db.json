@@ -1,17 +1,6 @@
 {
   "cart": [
     {
-      "name": "Who is Maud Dixon?: A Novel",
-      "img": "https://images-na.ssl-images-amazon.com/images/I/41TL9WxdZQL._SX322_BO1,204,203,200_.jpg",
-      "price": 19.5,
-      "createDate": 1615912792000,
-      "isAvailable": true,
-      "description": "Florence Darrow is a low-level publishing employee who believes that she's destined to be a famous writer. When she stumbles into a job the assistant to the brilliant, enigmatic novelist known as Maud Dixon — whose true identity is a secret — it appears that the universe is finally providing Florence’s big chance.",
-      "category": "Classics",
-      "id": "sjm0mmtosbj",
-      "quantity": 1
-    },
-    {
       "id": "xb6jchv2y",
       "name": "Pro React 16",
       "img": "https://images-na.ssl-images-amazon.com/images/I/41W9YdrRslL._SX348_BO1,204,203,200_.jpg",
@@ -113,6 +102,40 @@
         }
       ],
       "id": "680c32o4v6"
+    },
+    {
+      "name": "Siarhei",
+      "street": "Uborevicha 130-57",
+      "home": "4",
+      "flat": "5",
+      "phone": "+375298785451",
+      "comment": "",
+      "payment": "cash",
+      "product": [
+        {
+          "id": "g0tq98htz",
+          "name": "JavaScript and JQuery : Interactive Front-End Web Development",
+          "img": "https://img.thriftbooks.com/api/images/m/daed4f53240a9f02dcaf9d5fd2a6b920788f327e.jpg",
+          "description": "Table of ContentsIntroduction to AngularRequirements to develop Angular ApplicationsCreating and Running an applicationOpening Angular Application in Visual Studio CodeStructure of Angular ApplicationData BindingEvent BindingDesigning an input form with text controlngIf DirectivengFor DirectiveForm Validation using ValidatorsPipesCreating new ComponentRoutingCreating Login FormThis book is a step-by-step guide to learn angular programming to develop dynamic mobile and web applications.This book follows a practical approach to teach angular. Learn JavaScript and jQuery a nicer way This full-color book adopts a visual approach to teaching JavaScript & jQuery",
+          "price": 24.79,
+          "category": "Training",
+          "createDate": 1615487697936,
+          "isAvailable": true,
+          "quantity": 1
+        },
+        {
+          "name": "Saint X: A Novel Kindle Edition",
+          "img": "https://m.media-amazon.com/images/I/51pMrW0+vcL.jpg",
+          "price": 13.53,
+          "createDate": 1615831333923,
+          "isAvailable": true,
+          "description": "\"'Saint X' is hypnotic. Schaitkin's characters...are so intelligent and distinctive it feels not just easy, but necessary, to follow them. I devoured [it] in a day.\"",
+          "category": "Classics",
+          "id": "e88bfnmgik",
+          "quantity": 1
+        }
+      ],
+      "id": "bsi508004gn"
     }
   ],
   "auth": {
@@ -134,7 +157,7 @@
       "id": "g0tq98htz",
       "name": "JavaScript and JQuery : Interactive Front-End Web Development",
       "img": "https://img.thriftbooks.com/api/images/m/daed4f53240a9f02dcaf9d5fd2a6b920788f327e.jpg",
-      "description": "Table of ContentsIntroduction to AngularRequirements to develop Angular ApplicationsCreating and Running an applicationOpening Angular Application in Visual Studio CodeStructure of Angular ApplicationData BindingEvent BindingDesigning an input form with text controlngIf DirectivengFor DirectiveForm Validation using ValidatorsPipesCreating new ComponentRoutingCreating Login FormThis book is a step-by-step guide to learn angular programming to develop dynamic mobile and web applications.This book follows a practical approach to teach angular. Learn JavaScript and jQuery a nicer way This full-color book adopts a visual approach to teaching JavaScript & jQuery",
+      "description": "Table of ContentsIntroduction to AngularRequirements to develop Angular ApplicationsCreating and Running an applicationOpening Angular Application in Visual Studio CodeStructure of Angular ApplicationData BindingEvent BindingDesigning an input form with text controlngIf DirectivengFor DirectiveForm Validation using ValidatorsPipesCreating",
       "price": 24.79,
       "category": "Training",
       "createDate": 1615487697936,

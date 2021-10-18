@@ -13,4 +13,11 @@ describe('LoadingServiceService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should be created', async () => {
+    service.setLoading(false);
+    service.isLoading$.subscribe((boolean) => {
+      expect(boolean).toEqual(false);
+    });
+  });
 });

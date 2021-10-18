@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { IBook } from './models/book';
 
 import { BooksService } from './services/books.service';
-import { CartService } from '../cart/services/cart.service';
 
 @Component({
   selector: 'app-books',
@@ -10,13 +10,9 @@ import { CartService } from '../cart/services/cart.service';
   styleUrls: ['./books.component.scss'],
 })
 export class BooksComponent implements OnInit {
-  books: any;
+  public books?: Observable<IBook[]>;
 
-  constructor(
-    private route: ActivatedRoute,
-    private cartService: CartService,
-    private booksService: BooksService,
-  ) {}
+  constructor(private booksService: BooksService) {}
 
   ngOnInit(): void {
     this.books = this.booksService.getBooks();

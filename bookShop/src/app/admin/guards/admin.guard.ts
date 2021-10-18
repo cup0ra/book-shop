@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { DialogComponent } from 'src/app/shared/components/dialog/dialog.component';
-import { AuthService } from 'src/app/shared/services/auth.services';
+import { AuthService } from 'src/app/shared/services/auth/auth.services';
 
 @Injectable()
 export class AuthGuardService implements CanActivate {

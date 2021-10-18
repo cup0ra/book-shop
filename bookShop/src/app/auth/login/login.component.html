@@ -1,0 +1,17 @@
+<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h3 class="title">{{isLogin ? login : register}}</h3>
+  <mat-form-field *ngIf='!isLogin' class="input" appearance="outline" >
+    <mat-label>Name</mat-label>
+    <input class="input" matInput type="text"  formControlName="name" required>
+  </mat-form-field>
+  <mat-form-field class="input" appearance="outline" >
+    <mat-label>Email</mat-label>
+    <input class="input" matInput type="email"  formControlName="email" required>
+  </mat-form-field>
+  <mat-form-field class="input" appearance="outline" >
+    <mat-label>Password</mat-label>
+    <input  type="password" matInput formControlName="password" required>
+  </mat-form-field>
+  <button mat-raised-button color="primary"  type="submit">{{isLogin ? login : register}}</button>
+  <a class="registration" (click)='change()'>{{!isLogin ? login : register}}</a>
+</form>

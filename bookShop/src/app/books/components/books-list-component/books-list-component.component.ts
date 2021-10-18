@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IBook } from 'src/app/books/models/book';
 import { BooksService } from 'src/app/books/services/books.service';
-import { AuthService } from 'src/app/shared/services/auth.services';
-import { ActivatedRoute } from '@angular/router';
-import { LoadingServiceService } from 'src/app/shared/services/loading-service.service';
+import { AuthService } from 'src/app/shared/services/auth/auth.services';
+import { LoadingServiceService } from 'src/app/shared/services/loading/loading-service.service';
 
 @Component({
   selector: 'app-books-list-component',
@@ -25,8 +24,7 @@ export class BooksListComponentComponent implements OnInit {
 
   constructor(
     private booksService: BooksService,
-    private authService: AuthService,
-    private route: ActivatedRoute,
+    public authService: AuthService,
     public loadingService: LoadingServiceService,
   ) {}
 

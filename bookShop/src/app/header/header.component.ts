@@ -3,7 +3,7 @@ import { Component, DoCheck } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CartService } from '../cart/services/cart.service';
 import { DialogComponent } from '../shared/components/dialog/dialog.component';
-import { AuthService } from '../shared/services/auth.services';
+import { AuthService } from '../shared/services/auth/auth.services';
 
 @Component({
   selector: 'app-header',
@@ -40,9 +40,7 @@ export class HeaderComponent implements DoCheck {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed', result);
       this.isAdmin = this.isAdmin ? !result : result;
-      !this.isAdmin ? this.authService.logout() : this.authService.login();
     });
   }
 }
