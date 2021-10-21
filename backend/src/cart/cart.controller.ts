@@ -8,7 +8,7 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common';
-import { JwtAuthGuard } from '../auth/strategy/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/strategy/jwt-auth/jwt-auth.guard';
 import { Cart } from '../model/cart.entity';
 import { CartService } from './cart.service';
 

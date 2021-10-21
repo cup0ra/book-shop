@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { JwtAuthGuard } from '../auth/strategy/jwt-auth.guard';
-import { JwtStrategy } from '../auth/strategy/jwt.strategy';
+import { JwtAuthGuard } from '../auth/strategy/jwt-auth/jwt-auth.guard';
+import { JwtStrategy } from '../auth/strategy/jwt-auth/jwt.strategy';
 import { Book } from '../model/book.entity';
 import { BookService } from './book.service';
 

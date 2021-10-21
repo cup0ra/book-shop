@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { CookieService } from 'ngx-cookie-service';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 
@@ -36,6 +37,7 @@ import { AuthModule } from './auth/auth.module';
   providers: [
     AuthGuardService,
     AuthService,
+    CookieService,
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],

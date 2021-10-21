@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 
 import { LoadingServiceService } from 'src/app/shared/services/loading/loading-service.service';
 import { SnackBarService } from 'src/app/shared/services/snack-bar/snack-bar.service';
+import { switchMap } from 'rxjs/operators';
 import { BooksService } from '../../services/books.service';
 import { CartService } from '../../../cart/services/cart.service';
 
@@ -27,12 +28,15 @@ export class BookComponentComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.booksService.getBook(id).subscribe((data: IBook) => {
+    this.route.paramMap
+      .pipe(
+        switchMap((params: Params) => {
+          return this.booksService.getBook(params.get('id'));
+        }),
+      )
+      .subscribe((data: IBook) => {
         this.book = data;
       });
-    }
   }
 
   addBook(): void {

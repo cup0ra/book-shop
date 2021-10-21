@@ -18,6 +18,10 @@ export class HttpClientService<T> {
 
   constructor(private http: HttpClient) {}
 
+  getRefresh(path: string): Observable<T> {
+    return this.http.get<T>(`${this.url}/${path}`, this.httpOptions);
+  }
+
   get(path: string): Observable<T[]> {
     return this.http.get<T[]>(`${this.url}/${path}`, this.httpOptions);
   }
@@ -26,7 +30,7 @@ export class HttpClientService<T> {
     return this.http.get<T>(`${this.url}/${path}/${id}`, this.httpOptions);
   };
 
-  post(path: string, obj: T): Observable<T> {
+  post(path: string, obj?: T): Observable<T> {
     return this.http.post<T>(`${this.url}/${path}`, obj, this.httpOptions);
   }
 

@@ -43,4 +43,8 @@ export class BooksListComponentComponent implements OnInit {
   selectSort(event: Event) {
     this.sortField = (event.target as HTMLSelectElement).value;
   }
+
+  trackByFn(index: number, item: IBook): string {
+    return item.id;
+  }
 }

@@ -16,7 +16,7 @@
   </div>
 <div class="books-list">
   <mat-card class="book"
-   *ngFor="let book of books | orderBy: sortField : isSortField"
+   *ngFor="let book of books | orderBy: sortField : isSortField; let i=index;trackBy: trackByFn "
    routerLinkActive="active"
    appHoverCard>
     <mat-card-content [style.height]='style' class="book-content" [routerLink]="['./book', book.id]">
