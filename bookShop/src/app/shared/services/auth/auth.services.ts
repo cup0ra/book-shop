@@ -5,7 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { HttpResponse } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { IUser } from 'src/app/auth/model/user';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClientService } from '../http-client/http-client.service';
 import { LocalStorageService } from '../local-storage.service';
 
@@ -25,17 +25,16 @@ export class AuthService {
     private localStorage: LocalStorageService,
   ) {}
 
-  login(user: IUser) {
+  login(user: IUser): Observable<IUser> {
     return this.httpClient.post('auth/login', user).pipe(
       tap((data) => {
         this.localStorage.set('user', JSON.stringify(data));
         this.userSource.next(data);
-        console.log(this.userSource, 'USER');
       }),
     );
   }
 
-  register(user: IUser) {
+  register(user: IUser): Observable<IUser> {
     return this.httpClient.post('auth/register', user);
   }
 
@@ -48,19 +47,19 @@ export class AuthService {
     return this.isloggedIn;
   }
 
-  refreshToken() {
+  refreshToken(): Observable<HttpResponse<any>> {
     return this.httpClientAuth.getRefresh('auth/refresh');
   }
 
-  logOut() {
+  logOut(): Observable<IUser> {
     return this.httpClient.post('log-out');
   }
 
-  getCookies() {
+  getCookies(): any {
     return this.cookieService.getAll();
   }
 
-  getUser() {
+  getUser(): Observable<IUser | null> {
     return this.user;
   }
 }

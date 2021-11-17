@@ -36,11 +36,11 @@ export class BooksListComponentComponent implements OnInit {
     this.style = this.isAdmin ? '87%' : '100%';
   }
 
-  sort() {
+  sort(): void {
     this.isSortField = !this.isSortField;
   }
 
-  selectSort(event: Event) {
+  selectSort(event: Event): void {
     this.sortField = (event.target as HTMLSelectElement).value;
   }
 

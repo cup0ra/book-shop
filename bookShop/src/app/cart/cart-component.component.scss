@@ -3,14 +3,17 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+
   .total {
     width: 150px;
     font-size: 16px;
   }
+
   .rotate {
     transform: rotate(180deg);
   }
 }
+
 .main {
   width: 100%;
   display: flex;

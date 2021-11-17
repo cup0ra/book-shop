@@ -5,6 +5,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { CartService } from 'src/app/cart/services/cart.service';
 import { GeneratorService } from 'src/app/core/service/generator';
 import { OrdersService } from '../services/orders.service';
+import { ICart } from '../../cart/models/cart';
 
 @Component({
   selector: 'app-order-form',
@@ -16,7 +17,7 @@ export class OrderFormComponent implements OnInit {
 
   order: any = {};
 
-  cartItems: any;
+  cartItems: ICart[];
 
   isCompleted = true;
 
@@ -41,10 +42,9 @@ export class OrderFormComponent implements OnInit {
     this.cartService.getCart().subscribe((cart) => {
       this.cartItems = cart;
     });
-    console.log(this.options.valid);
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.orderServices
       .addOrder({
         ...this.order,
@@ -56,11 +56,9 @@ export class OrderFormComponent implements OnInit {
         this.cartService.removeAllBooks();
         this.isCompleted = false;
       });
-    console.log(this.orderServices.getOrders());
   }
 
-  backClicked() {
-    console.log('back');
+  backClicked(): void {
     this.location.back();
   }
 }

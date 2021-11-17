@@ -30,7 +30,7 @@ export class SnackBarService {
     this.config.duration = this.autoHide;
   }
 
-  open(message: string) {
+  open(message: string): void {
     this.snackBar.open(
       (this.message = message),
       this.action ? this.actionButtonLabel : undefined,

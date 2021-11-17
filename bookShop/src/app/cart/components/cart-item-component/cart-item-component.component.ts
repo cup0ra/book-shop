@@ -9,7 +9,7 @@ import {
 
 import { CartService } from 'src/app/cart/services/cart.service';
 
-import ICart from '../../models/cart';
+import { ICart } from '../../models/cart';
 
 @Component({
   selector: 'app-cart-item-component',
@@ -30,12 +30,12 @@ export class CartItemComponentComponent implements OnInit {
     this.price = this.cart.price * this.cart.quantity;
   }
 
-  getInputValue(event: any) {
+  getInputValue(event: any): void {
     this.price = this.cart.price * event.target.value;
     this.cartService.changeQuantityBooks({ ...this.cart, quantity: +event.target.value });
   }
 
-  removeBook() {
+  removeBook(): void {
     /* this.cartService.deleteBook(this.cart.id); */
     this.deleteBook.emit(this.cart.id);
   }

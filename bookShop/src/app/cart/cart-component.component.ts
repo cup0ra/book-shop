@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { CartService } from './services/cart.service';
 
-import ICart from './models/cart';
+import { ICart } from './models/cart';
 
 @Component({
   selector: 'app-cart-component',
@@ -29,32 +29,28 @@ export class CartComponentComponent implements OnInit {
     this.updateCart();
   }
 
-  ngOnDestroy() {
-    console.log('destroy');
-  }
-
-  deleteBook = (id: string): void => {
+  deleteBook(id: string): void {
     this.cartService.deleteBook(id);
     this.updateCart();
-  };
+  }
 
-  deleteAllBooks = () => {
+  deleteAllBooks(): void {
     this.cartService.removeAllBooks();
     this.updateCart();
-  };
+  }
 
-  updateCart() {
+  updateCart(): void {
     this.cartService.getCart().subscribe((data) => {
       this.carts = data;
       this.isCart = this.carts.length > 0;
     });
   }
 
-  sort() {
+  sort(): void {
     this.isSortField = !this.isSortField;
   }
 
-  selectSort(event: Event) {
+  selectSort(event: Event): void {
     this.sortField = (event.target as HTMLSelectElement).value;
   }
 }

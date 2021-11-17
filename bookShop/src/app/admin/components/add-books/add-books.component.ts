@@ -19,9 +19,9 @@ export class AddBooksComponent implements OnInit {
 
   categories = Category;
 
-  book?: IBook;
+  book: IBook;
 
-  buttonName? = 'ADD BOOK';
+  buttonName = 'ADD BOOK';
 
   constructor(
     private fb: FormBuilder,
@@ -33,7 +33,7 @@ export class AddBooksComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    if (id)
+    if (id) {
       this.booksService.getId('books', id).subscribe((book: any) => {
         this.book = book;
         this.options.patchValue({
@@ -43,6 +43,7 @@ export class AddBooksComponent implements OnInit {
         });
         this.buttonName = 'CHANGE BOOK';
       });
+    }
 
     this.options = this.fb.group({
       name: new FormControl(''),
@@ -55,7 +56,7 @@ export class AddBooksComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  public onSubmit(): void {
     this.order = {
       ...this.order,
       ...this.options.value,
@@ -63,7 +64,6 @@ export class AddBooksComponent implements OnInit {
       createDate: Number(moment(this.options.controls.createDate.value).valueOf()),
       id: this.book?.id,
     };
-    console.log(this.order);
     if (this.book) {
       this.booksService
         .put('books', this.book.id, this.order)
@@ -75,7 +75,7 @@ export class AddBooksComponent implements OnInit {
     }
   }
 
-  backClicked() {
+  public backClicked(): void {
     this.location.back();
   }
 }

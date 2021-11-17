@@ -1,11 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ICart } from '../../models/cart';
 
 @Component({
   selector: 'app-cart-list-component',
@@ -13,20 +7,16 @@ import {
   styleUrls: ['./cart-list-component.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CartListComponentComponent implements OnInit {
-  @Input() carts: any;
+export class CartListComponentComponent {
+  @Input() carts: ICart[];
 
   @Output() deleteBook = new EventEmitter<string>();
 
   @Input() sortField: any;
 
-  @Input() isSortField: any;
+  @Input() isSortField: boolean;
 
-  ngOnInit(): void {
-    console.log(this.carts);
-  }
-
-  delBook = (id: string) => {
+  delBook(id: string): void {
     this.deleteBook.emit(id);
-  };
+  }
 }

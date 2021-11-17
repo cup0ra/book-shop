@@ -3,7 +3,6 @@ import { CartService } from './cart.service';
 describe('Service cart', () => {
   let service: CartService;
   let httpClientMock: any;
-  const cartMock = [];
   const cartInfoMock = {
     totalQuantity: 0,
     totalSum: 0,

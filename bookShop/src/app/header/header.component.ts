@@ -1,11 +1,10 @@
 /* eslint-disable no-return-assign */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { IUser } from '../auth/model/user';
+
 import { CartService } from '../cart/services/cart.service';
 import { DialogComponent } from '../shared/components/dialog/dialog.component';
-import { AuthService } from '../shared/services/auth/auth.services';
 
 @Component({
   selector: 'app-header',
@@ -17,19 +16,15 @@ export class HeaderComponent implements OnInit {
 
   isAdmin = false;
 
-  name: any;
+  name: string;
 
-  constructor(
-    private cartService: CartService,
-    public dialog: MatDialog,
-    private authService: AuthService,
-  ) {}
+  constructor(private cartService: CartService, public dialog: MatDialog) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.badge = this.cartService.getCartInfo().totalQuantity;
   }
 
-  onLogin() {
+  onLogin(): void {
     this.openDialog();
   }
 

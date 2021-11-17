@@ -15,7 +15,7 @@ import { IBook } from '../../models/book';
   styleUrls: ['./book-component.component.scss'],
 })
 export class BookComponentComponent implements OnInit {
-  public book!: IBook;
+  public book: IBook;
 
   public message = `Book added in cart`;
 
@@ -27,7 +27,7 @@ export class BookComponentComponent implements OnInit {
     public loadingService: LoadingServiceService,
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.route.paramMap
       .pipe(
         switchMap((params: Params) => {

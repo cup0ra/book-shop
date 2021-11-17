@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auth/auth.services';
 import { Location } from '@angular/common';
@@ -11,7 +11,7 @@ import { SnackBarService } from 'src/app/shared/services/snack-bar/snack-bar.ser
   styleUrls: ['./login.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   public form: FormGroup = new FormGroup({
     name: new FormControl(),
     email: new FormControl(),
@@ -31,9 +31,7 @@ export class LoginComponent implements OnInit {
     private location: Location,
   ) {}
 
-  ngOnInit(): void {}
-
-  onSubmit(): void {
+  public onSubmit(): void {
     this.isLogin ? this.singIn() : this.signOn();
   }
 
@@ -41,11 +39,10 @@ export class LoginComponent implements OnInit {
     this.isLogin = !this.isLogin;
   }
 
-  singIn() {
+  public singIn(): void {
     this.authService.login({ ...this.form.value, name: '' }).subscribe(
-      (data) => {
+      () => {
         this.location.back();
-        console.log(data);
       },
       (error) => {
         this.snackBar.open(error.error.msg);
@@ -53,11 +50,10 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  signOn() {
+  signOn(): void {
     this.authService.register(this.form.value).subscribe(
-      (data) => {
+      () => {
         this.isLogin = true;
-        console.log(data);
         this.cdr.markForCheck();
       },
       (error) => {
